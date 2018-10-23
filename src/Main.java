@@ -14,7 +14,7 @@ import util.Random;
  * Created for the CSSE220 Final Project
  * 
  * @author garnacpj
- *
+ *HI
  */
 
 public class Main {

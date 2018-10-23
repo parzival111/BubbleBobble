@@ -11,6 +11,13 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import java.awt.geom.Point2D;
+/**
+ * 
+ * HI
+ * 
+ * @author garnacpj
+ *
+ */
 
 @SuppressWarnings("serial")
 public class Player extends JComponent {

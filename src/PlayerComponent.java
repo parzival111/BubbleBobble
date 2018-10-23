@@ -11,6 +11,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * 
+ * HI
+ * 
+ * @author garnacpj
+ *
+ */
 @SuppressWarnings("serial")
 public class PlayerComponent extends JComponent {
 	private Player player;
