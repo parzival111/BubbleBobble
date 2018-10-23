@@ -20,6 +20,15 @@ import util.Random;
 public class Main {
 	private static final int WIDTH  = 600;
 	private static final int HEIGHT = 440;
+	private ArrayList<String> levelNames = new ArrayList<String>();
+	
+	public Main() {
+		this.levelNames = new ArrayList<String>();
+	}
+	
+	public void addLevel(String levelName) {
+		this.levelNames.add(levelName);
+	}
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Bubble Bobble");
@@ -30,6 +39,9 @@ public class Main {
 		frame.add(new PlayerComponent(player, frame));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
+		Main main = new Main();
+		LevelLoader levelLoader = new LevelLoader();
+		main.addLevel("Level1");
+		levelLoader.loadLevel(main.levelNames.get(0));
 	}
 }
