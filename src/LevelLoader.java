@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
@@ -6,6 +8,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 
 public class LevelLoader {
 
@@ -16,6 +19,7 @@ public class LevelLoader {
 	}
 
 	public void loadLevel(String levelName) {
+		this.borders.clear();
 		try {
 			FileReader file = new FileReader(levelName);
 			Scanner s = new Scanner(file);
@@ -26,6 +30,10 @@ public class LevelLoader {
 		} catch (FileNotFoundException e) {
 			System.err.println("File " + levelName + " not found.");
 		}
+	}
+
+	public ArrayList<Shape> getBorders() {
+		return borders;
 	}
 
 	public void readShape(Scanner s) {
@@ -53,6 +61,13 @@ public class LevelLoader {
 			}
 		} catch (InputMismatchException e) {
 			System.err.println("Error reading shape.");
+		}
+	}
+	
+	public void drawOn(Graphics2D g) {
+		g.setColor(Color.BLACK);
+		for(int i=0; i<borders.size()-1; i++) {
+			g.draw(borders.get(i));
 		}
 	}
 

@@ -38,11 +38,9 @@ public class Main {
 		// Need to draw player component
 		
 		frame.add(new PlayerComponent(player, frame));
+		//frame.add(new LevelLoaderComponent(new LevelLoader(), frame));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		Main main = new Main();
-		LevelLoader levelLoader = new LevelLoader();
-		main.addLevel("Level1");
-		levelLoader.loadLevel(main.levelNames.get(0));
+		
 	}
 }
