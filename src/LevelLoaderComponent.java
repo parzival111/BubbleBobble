@@ -16,10 +16,9 @@ public class LevelLoaderComponent extends JComponent {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		
+		levelLoader.drawOn(g2);
 	}
 	
 	

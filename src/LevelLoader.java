@@ -67,6 +67,7 @@ public class LevelLoader {
 	public void drawOn(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		for(int i=0; i<borders.size()-1; i++) {
+			System.out.println("Drawing line" + i);
 			g.draw(borders.get(i));
 		}
 	}

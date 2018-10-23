@@ -36,9 +36,10 @@ public class Main {
 		Player player = new Player();
 		frame.setSize(WIDTH, HEIGHT);
 		// Need to draw player component
-		
+		LevelLoader levelLoader = new LevelLoader();
+		levelLoader.loadLevel("Level1");
+		frame.add(new LevelLoaderComponent(levelLoader, frame));
 		frame.add(new PlayerComponent(player, frame));
-		//frame.add(new LevelLoaderComponent(new LevelLoader(), frame));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
