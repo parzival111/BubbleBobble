@@ -34,19 +34,16 @@ public class Player extends JComponent {
 			// Move Right
 			System.out.println("Move Right");
 			this.updateVelocity(1);
-			this.updatePosition();
 			break;
 		case 37:
 			// Move Left
 			System.out.println("Move Left");
 			this.updateVelocity(-1);
-			this.updatePosition();
 			break;
 		case 38:
 			// Jump
 			System.out.println("Jump");
 			this.jump();
-			this.updatePosition();
 			break;
 		case 0:
 			this.updateVelocity(0);
@@ -66,34 +63,31 @@ public class Player extends JComponent {
 		if(vNew > this.movementSpeed) vNew = this.movementSpeed;
 		if(vNew < 0-this.movementSpeed) vNew = -this.movementSpeed;
 		double vYNew = this.velocity.getY() + 0.5;
-		if (this.checkFloor() && this.velocity.getY() > 0) {
-			vYNew = 0;
-		}
+		if(this.position.getY() > FRAME_HEIGHT - WIDTH/2) vYNew = 0;
 		this.velocity.setLocation(vNew, vYNew);
 
 	}
 
 	public void updatePosition() {
-		CheckBoundry();
-		this.position.setLocation(this.position.getX() + this.velocity.getX(),
-				this.position.getY() + this.velocity.getY());
+		double pXNew = this.position.getX() + this.velocity.getX();
+		if (this.position.getX() >= FRAME_WIDTH - WIDTH / 2 && this.velocity.getX() > 1) {
+			pXNew = FRAME_WIDTH - WIDTH / 2;
+			this.velocity.setLocation(0, this.velocity.getY());
+		}
+		if (this.position.getX() <= 0 + WIDTH / 2 && this.velocity.getX() < 1) {
+			pXNew = WIDTH/2;
+			this.velocity.setLocation(0, this.velocity.getY());
+		}
+		double pYNew = this.position.getY() + this.velocity.getY();
+		if (this.position.getY() > FRAME_HEIGHT - WIDTH/2) pYNew = FRAME_HEIGHT - WIDTH/2;
+		this.position.setLocation(pXNew, pYNew);
 
 	}
 
 	public void jump() {
 		if (!this.checkFloor()) {
-			updateVelocity(0);
 		} else {
 			this.velocity.setLocation(this.velocity.getX(), -10.0);
-		}
-	}
-
-	public void CheckBoundry() {
-		if (this.position.getX() == FRAME_WIDTH - WIDTH / 2 && this.velocity.getX() > 1) {
-			this.velocity.setLocation(0, this.velocity.getY());
-		}
-		if (this.position.getX() == 0 + WIDTH / 2 && this.velocity.getX() < 1) {
-			this.velocity.setLocation(0, this.velocity.getY());
 		}
 	}
 
