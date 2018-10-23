@@ -32,9 +32,11 @@ public class Player extends JComponent {
 	final double g = 0.5;
 	private ArrayList<Shape> borders;
 
-	final double movementSpeed = 3;
-	final int WIDTH = 10;
-	final int HEIGHT = 10;
+	
+	final int WIDTH = 20;
+	final int HEIGHT = 25;
+	final double movementSpeed = WIDTH/5;
+	final double jumpHeight = HEIGHT/2;
 
 	public Player() {
 		position = new Point2D.Double(WIDTH / 2, FRAME_HEIGHT - WIDTH / 2);
@@ -145,7 +147,7 @@ public class Player extends JComponent {
 	public void jump() {
 		if (!this.checkFloor()) {
 		} else {
-			this.velocity.setLocation(this.velocity.getX(), -10.0);
+			this.velocity.setLocation(this.velocity.getX(), -this.jumpHeight);
 		}
 	}
 
