@@ -1,0 +1,277 @@
+https://goo.gl/zQcxjT
+
+
+
+@startuml
+abstract Object {
+Point2D position
+Point2D velocity
+Object(Point2D position)
+setPosition()
+getPosition()
+timePassed()
+die()
+reset()
+getShape()
+getImage()
+getSize()
+Object[] checkCollision()
+<<abstract>> void updatePosition()
+<<abstract>> void updateVelocity()
+<<abstract>> Shape getShape()
+<<abstract>> image getImage()
+}
+
+interface ObjectEnvironment {
+addObject(object, position)
+removeObject(object)
+clearLevel()
+loadLevel(id)
+list<Object> getDrawableParts()
+}
+
+abstract AbstractItem extends Object{
+String buff
+}
+
+abstract AbstractBubble extends Object{
+velocity
+maxDistance
+origin
+<<abstract>> void updatePosition()
+<<abstract>> void updateVelocity()
+<<abstract>> Shape getShape()
+<<abstract>> image getImage()
+}
+
+abstract AbstractFruit extends Object{ 
+score
+getScore()
+<<abstract>> void updatePosition()
+<<abstract>> void updateVelocity()
+<<abstract>> Shape getShape()
+<<abstract>> image getImage()
+}
+
+abstract AbstractEnemy extends Object {
+getPlayerDirection()
+getShortestDistance()
+<<abstract>> void updatePosition()
+<<abstract>> void updateVelocity()
+<<abstract>> Shape getShape()
+<<abstract>> image getImage()
+}
+
+class Player extends Object{
+input
+remainingLives
+jumpHeight
+defaultJumpHeight
+movementSpeed
+defaultMovementSpeed
+bubbleDistance
+defaultBubbleDistance
+Player(Lives)
+Player(lives, jumpHeight, movementSpeed, bubbleDistance)
+die()
+respawn()
+jump()
+move()
+shoot()
+handleCollisions()
+handleApplyBuff()
+Player(lives, position)
+updatePosition()
+updateVelocity()
+getShape()
+Image()
+}
+
+class Bot extends AbstractEnemy {
+jumpHeight
+movementSpeed
+die()
+Bot(position, movementSpeed)
+updatePosition()
+updateVelocity()
+getShape()
+getImage()
+}
+
+class Ninja extends AbstractEnemy {
+type
+jumpHeight
+movementSpeed
+die()
+Ninja(movementSpeed)
+updatePosition()
+updateVelocity()
+getShape()
+getImage()
+}
+
+class Shoes extends AbstractItem {
+getShape()
+getImage()
+die()
+}
+
+class Candy extends AbstractItem {
+getShape()
+getImage()
+die()
+}
+
+class Bubble extends AbstractBubble {
+
+Bubble(position, velocity, direction)
+die()
+}
+
+class EnemyBubble extends AbstractBubble {
+EnemyBubble(position, velocity, direction)
+updatePosition()
+updateVelocity()
+getImage()
+getScore()
+die()
+}
+
+class FullBubble extends AbstractBubble {
+image
+Enemy enemy
+popTime
+FullBubble(Enemy enemy, Point2D position)
+popTime
+
+updatePosition()
+updateVelocity()
+getImage()
+getScore()
+}
+
+class Cherry extends AbstractFruit {
+score
+image
+getImage()
+getScore()
+}
+
+class Heart extends AbstractFruit {
+score
+image
+getImage()
+getScore()
+}
+
+class Level {
+id
+getLevel()
+draw(g)
+}
+
+ObjectEnvironment -> "*" Level
+ObjectEnvironment -> "*" Object
+@enduml
+
+class Player extends Object{
+input
+remainingLives
+jumpHeight
+defaultJumpHeight
+movementSpeed
+defaultMovementSpeed
+bubbleDistance
+defaultBubbleDistance
+Player(Lives)
+Player(lives, jumpHeight, movementSpeed, bubbleDistance)
+die()
+respawn()
+jump()
+move()
+handleCollisions()
+handleApplyBuff()
+Player(lives, position)
+updatePosition()
+updateVelocity()
+getShape()
+Image()
+}
+
+class Bot extends AbstractEnemy {
+jumpHeight
+movementSpeed
+die()
+Bot(position, movementSpeed)
+updatePosition()
+updateVelocity()
+getShape()
+getImage()
+}
+
+class Ninja extends AbstractEnemy {
+type
+jumpHeight
+movementSpeed
+die()
+Ninja(movementSpeed)
+updatePosition()
+updateVelocity()
+getShape()
+getImage()
+}
+
+class Shoes extends AbstractItem {
+getShape()
+getImage()
+die()
+}
+
+class Candy extends AbstractItem {
+getShape()
+getImage()
+die()
+}
+
+class Bubble extends AbstractBubble {
+
+Bubble(position, velocity, direction)
+die()
+}
+
+class EnemyBubble extends AbstractBubble {
+EnemyBubble(position, velocity, direction)
+updatePosition()
+updateVelocity()
+getImage()
+getScore()
+die()
+}
+
+class FullBubble extends AbstractBubble {
+image
+Enemy enemy
+popTime
+FullBubble(Enemy enemy, Point2D position)
+popTime
+
+updatePosition()
+updateVelocity()
+getImage()
+getScore()
+}
+
+class cherry extends AbstractFruit {
+score
+image
+getImage()
+getScore()
+}
+
+class heart extends AbstractFruit {
+score
+image
+getImage()
+getScore()
+}
+@enduml
