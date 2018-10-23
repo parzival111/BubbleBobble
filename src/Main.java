@@ -14,15 +14,13 @@ import util.Random;
  * Created for the CSSE220 Final Project
  * 
  * @author garnacpj
- *HI
+ *
  */
 
 public class Main {
 	private static final int WIDTH  = 600;
-<<<<<<< HEAD
-	private static final int HEIGHT = 441;
-=======
 	private static final int HEIGHT = 440;
+	
 	private ArrayList<String> levelNames = new ArrayList<String>();
 	
 	public Main() {
@@ -32,7 +30,6 @@ public class Main {
 	public void addLevel(String levelName) {
 		this.levelNames.add(levelName);
 	}
->>>>>>> branch 'master' of https://github.com/parzival111/BubbleBobble.git
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Bubble Bobble");

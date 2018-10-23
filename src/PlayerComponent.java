@@ -35,6 +35,7 @@ public class PlayerComponent extends JComponent {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
+				player.handleKeyRelease(e.getKeyCode());
 			}
 
 			@Override
@@ -47,7 +48,7 @@ public class PlayerComponent extends JComponent {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				player.handleKeyPress(0);
+				player.timePassed();
 				repaint();
 			}
 			

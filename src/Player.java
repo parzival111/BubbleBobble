@@ -26,6 +26,7 @@ public class Player extends JComponent {
 
 	private Point2D position;
 	private Point2D velocity;
+	final double g = -0.5;
 	final double movementSpeed = 3;
 	final int WIDTH = 10;
 	final int HEIGHT = 10;
@@ -40,12 +41,12 @@ public class Player extends JComponent {
 		case 39:
 			// Move Right
 			System.out.println("Move Right");
-			this.updateVelocity(1);
+			this.updateVelocity((int) this.movementSpeed);
 			break;
 		case 37:
 			// Move Left
 			System.out.println("Move Left");
-			this.updateVelocity(-1);
+			this.updateVelocity((int) -this.movementSpeed);
 			break;
 		case 38:
 			// Jump
@@ -53,7 +54,6 @@ public class Player extends JComponent {
 			this.jump();
 			break;
 		case 0:
-			this.updateVelocity(0);
 			this.updatePosition();
 			break;
 		default:
@@ -64,15 +64,43 @@ public class Player extends JComponent {
 		}
 
 	}
-
+	
+	public void handleKeyRelease(int keyPress) {
+		switch (keyPress) {
+		case 39:
+			// Move Right
+			System.out.println("Move Right");
+			this.updateVelocity((int) this.movementSpeed);
+			break;
+		case 37:
+			// Move Left
+			System.out.println("Move Left");
+			this.updateVelocity((int) -this.movementSpeed);
+			break;
+		case 38:
+			// Jump
+			System.out.println("Jump");
+			this.jump();
+			break;
+		case 0:
+			this.updatePosition();
+			break;
+		default:
+			System.out.println("Handling Key Press " + keyPress);
+			this.updateVelocity(0);
+			this.updatePosition();
+			break;
+		}
+	}
+	
+	public void timePassed() {
+		this.updateVelocity(0, false);
+		this.updatePosition();
+	}
+	
 	public void updateVelocity(int v) {
-		double vNew = this.velocity.getX() + v;
-		if(vNew > this.movementSpeed) vNew = this.movementSpeed;
-		if(vNew < 0-this.movementSpeed) vNew = -this.movementSpeed;
-		double vYNew = this.velocity.getY() + 0.5;
-		if(this.position.getY() > FRAME_HEIGHT - WIDTH/2) vYNew = 0;
-		this.velocity.setLocation(vNew, vYNew);
-
+		
+		this.velocity.setLocation(v, this.velocity.getY() + g);
 	}
 
 	public void updatePosition() {
