@@ -8,8 +8,16 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**hLO
+ * 
+ * HI
+ * 
+ * @author garnacpj
+ *
+ */
 @SuppressWarnings("serial")
 public class PlayerComponent extends JComponent {
 	private Player player;
