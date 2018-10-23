@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -19,6 +21,7 @@ public class Player extends JComponent {
 
 	private Point2D position;
 	private Point2D velocity;
+	private ArrayList<Shape> borders;
 	final double movementSpeed = 3;
 	final int WIDTH = 10;
 	final int HEIGHT = 10;
@@ -26,6 +29,10 @@ public class Player extends JComponent {
 	public Player() {
 		position = new Point2D.Double(WIDTH / 2, FRAME_HEIGHT - WIDTH / 2);
 		velocity = new Point2D.Double(0, 0);
+		borders = new ArrayList<Shape>();
+		LevelLoader levelLoader = new LevelLoader();
+		levelLoader.loadLevel("Level1");
+		borders.addAll(levelLoader.getBorders());
 	}
 
 	public void handleKeyPress(int keyPress) {
@@ -74,7 +81,7 @@ public class Player extends JComponent {
 	}
 
 	public void updatePosition() {
-		CheckBoundry();
+		CheckBoundary();
 		this.position.setLocation(this.position.getX() + this.velocity.getX(),
 				this.position.getY() + this.velocity.getY());
 
@@ -88,7 +95,7 @@ public class Player extends JComponent {
 		}
 	}
 
-	public void CheckBoundry() {
+	public void CheckBoundary() {
 		if (this.position.getX() == FRAME_WIDTH - WIDTH / 2 && this.velocity.getX() > 1) {
 			this.velocity.setLocation(0, this.velocity.getY());
 		}
@@ -104,5 +111,9 @@ public class Player extends JComponent {
 	public void drawOn(Graphics2D g2) {
 		g2.setColor(Color.BLACK);
 		g2.fillRect((int) this.position.getX()-WIDTH, (int) this.position.getY()-WIDTH, WIDTH, HEIGHT);
+	}
+	
+	public void addBoundary(Shape s) {
+		borders.add(s);
 	}
 }
